@@ -45,7 +45,7 @@ const MyTeams = () => {
     <div>
       <h2 style={{ textAlign: 'center' }}>My Favorites</h2>
       <Grid container>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
           <input
             id="pick-team"
             type="text"
@@ -56,7 +56,7 @@ const MyTeams = () => {
           />
           {duplicateTeamError && <div>{duplicateTeamError}</div>}
           <h3>Recommended</h3>
-          <ul>
+          <ul style={{ padding: '0' }}>
             <li style={{ listStyleType: 'none' }}>
               <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'Dodgers'])}>
                 <span>Dodgers </span>
@@ -77,10 +77,7 @@ const MyTeams = () => {
             </li>
           </ul>
         </Grid>
-        <Grid item xs={12} md={2}>
-          Or
-        </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
           <input
             id="pick-league"
             type="text"
@@ -113,9 +110,9 @@ const MyTeams = () => {
           </ul>
         </Grid>
       </Grid>
-      <section className="text-align-center">
+      <section style={{ textAlign: 'center' }}>
         <h3>My Favorites</h3>
-        <ul>
+        <ul style={{ padding: '0' }}>
           {favorites.map((favorite) => (
             <li key={favorite} style={{ listStyleType: 'none' }}>
               <Button onClick={() => setFavorites(prevFaves => prevFaves.filter(fave => fave !== favorite))}>
