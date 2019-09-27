@@ -8,6 +8,8 @@ const MyTeams = () => {
   const [favorites, setFavorites] = useState(['Dbacks', 'Suns', 'Coyotes']);
   const [duplicateTeamError, setDuplicateTeamError] = useState('');
   const [duplicateLeagueError, setDuplicateLeagueError] = useState('');
+  const recommendedTeams = ['Dodgers', 'Lakers', 'Sharks'];
+  const recommendedLeagues = ['National League West (MLB)', 'Pacific Division (NHL)', 'NFC West (NFL)'];
 
   function onChange(value, key) {
     switch (key) {
@@ -57,24 +59,14 @@ const MyTeams = () => {
           {duplicateTeamError && <div>{duplicateTeamError}</div>}
           <h3>Recommended</h3>
           <ul style={{ padding: '0' }}>
-            <li style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'Dodgers'])}>
-                <span>Dodgers </span>
-                <img src={require('../images/dodgers.png')} alt="LA Dodgers" height="25px" />
-              </Button>
-            </li>
-            <li style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'Lakers'])}>
-                <span>Lakers </span>
-                <img src={require('../images/lakers.png')} alt="LA Lakers" height="25px" />
-              </Button>
-            </li>
-            <li style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'Sharks'])}>
-                <span>Sharks </span>
-                <img src={require('../images/sharks.png')} alt="San Jose Sharks" height="25px" />
-              </Button>
-            </li>
+            {recommendedTeams.map(team => (
+              <li style={{ listStyleType: 'none' }} key={team}>
+                <Button onClick={() => setFavorites(prevFaves => [...prevFaves, team])}>
+                  <span>{`${team} `}</span>
+                  <img src={require(`../images/${team.toLowerCase()}.png`)} alt={team} height="25px" />
+                </Button>
+              </li>
+            ))}
           </ul>
         </Grid>
         <Grid item xs={12} md={6} style={{ textAlign: 'center' }}>
@@ -88,38 +80,31 @@ const MyTeams = () => {
           />
           {duplicateLeagueError && <div>{duplicateLeagueError}</div>}
           <h3>Recommended</h3>
-          <ul>
-            <li style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'National League West'])}>
-                <span>National League West (MLB) </span>
-                <img src={require('../images/dbacks.png')} alt="Arizona Diamondbacks" height="25px" />
-              </Button>
-            </li>
-            <li style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'Pacific Division'])}>
-                <span>Pacific Division (NHL) </span>
-                <img src={require('../images/suns.png')} alt="Phoenix Suns" height="25px" />
-              </Button>
-            </li>
-            <li style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => [...prevFaves, 'NFC West'])}>
-                <span>NFC West (NFL) </span>
-                <img src={require('../images/cardinals.png')} alt="Arizona Cardinals" height="25px" />
-              </Button>
-            </li>
+          <ul style={{ padding: '0' }}>
+            {recommendedLeagues.map(league => (
+              <li style={{ listStyleType: 'none' }}>
+                <Button onClick={() => setFavorites(prevFaves => [...prevFaves, league])}>
+                  <span>{`${league} `}</span>
+                  {/*<img src={require('../images/${league}.png')} alt={league} height="25px" />*/}
+                </Button>
+              </li>
+            ))}
           </ul>
         </Grid>
       </Grid>
       <section style={{ textAlign: 'center' }}>
         <h3>My Favorites</h3>
         <ul style={{ padding: '0' }}>
-          {favorites.map((favorite) => (
-            <li key={favorite} style={{ listStyleType: 'none' }}>
-              <Button onClick={() => setFavorites(prevFaves => prevFaves.filter(fave => fave !== favorite))}>
-                {favorite} <img src={require(`../images/${favorite.split(' ').join().toLowerCase()}.png`)} alt={favorite} height="25px" />
-              </Button>
-            </li>
-          ))}
+          {favorites.map((favorite) => {
+            return (
+              <li key={favorite} style={{ listStyleType: 'none' }}>
+                <Button onClick={() => setFavorites(prevFaves => prevFaves.filter(fave => fave !== favorite))}>
+                  {favorite}
+                  {/*<img src={imageSrc} alt={favorite} height="25px" />*/}
+                </Button>
+              </li>
+            );
+          })}
         </ul>
       </section>
     </div>

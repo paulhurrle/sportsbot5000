@@ -1,9 +1,0 @@
-{
-  "short_name": "SportsBot5000",
-  "name": "SportsBot5000",
-  "icons": [],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
-}
